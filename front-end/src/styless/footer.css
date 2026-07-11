@@ -1,0 +1,20 @@
+/* FOOTER */
+
+.footer-section {
+  background: #f8f8f8;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-links li:hover {
+  color: #b57449;
+}

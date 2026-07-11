@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap');
+
+:root {
+  --brown:       #8b5e3c;
+  --brown-dark:  #5c3820;
+  --brown-mid:   #7a4f30;
+  --brown-light: #c49a6c;
+  --brown-pale:  #e8c99a;
+  --cream:       #fdf7ef;
+  --gold:        #d4a853;
+  --gold-light:  #f0cc7a;
+  --text:        #2a150a;
+  --text-mid:    #7a5a3e;
+  --text-light:  #b08a6e;
+  --border:      #e0ccb4;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── OVERLAY ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  /* background:
+    radial-gradient(ellipse at 25% 60%, rgba(196,154,108,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse at 75% 20%, rgba(139,94,60,0.18) 0%, transparent 50%),
+    linear-gradient(145deg, #1a0d05 0%, #2e1508 45%, #1a0d05 100%); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 999;
+}
+
+/* ── CARD ── */
+.modal-box {
+  position: relative;
+  width: 420px;
+  max-width: 100%;
+  background: var(--cream);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 40px 80px rgba(20,8,2,0.65),
+    0 0 0 1px rgba(212,168,83,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  animation: riseUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Gold shimmer top strip */
+.modal-box::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold-light) 20%, var(--gold) 50%, var(--brown-light) 80%, transparent 100%);
+}
+
+@keyframes riseUp {
+  from { opacity: 0; transform: translateY(36px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── CLOSE ── */
+.close-btn {
+  position: absolute;
+  top: 14px; right: 16px;
+  width: 30px; height: 30px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  color: rgba(255,255,255,0.65);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  background: rgba(255,255,255,0.22);
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* ── HEADER ── */
+.login-header {
+  background: linear-gradient(160deg, var(--brown-dark) 0%, var(--brown-mid) 55%, var(--brown) 100%);
+  padding: 38px 40px 42px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -50px;
+  width: 180px; height: 180px;
+  border: 1px solid rgba(212,168,83,0.18);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.login-header::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -40px;
+  width: 220px; height: 220px;
+  border: 1px solid rgba(212,168,83,0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Logo icon in header */
+.login-logo {
+  width: 56px; height: 56px;
+  margin: 0 auto 18px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(212,168,83,0.3);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.login-logo svg {
+  width: 26px; height: 26px;
+  fill: none;
+  stroke: var(--gold-light);
+  stroke-width: 1.6;
+}
+
+.login-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 0.4px;
+  position: relative;
+  z-index: 1;
+}
+
+.subtitle {
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: var(--brown-pale);
+  opacity: 0.8;
+  margin-top: 5px;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── FORM BODY ── */
+.login-body {
+  padding: 32px 36px 36px;
+}
+
+/* Field wrapper */
+.login-field {
+  margin-bottom: 14px;
+}
+
+.login-field label {
+  display: block;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 6px;
+  transition: color 0.2s;
+}
+
+.login-field:focus-within label { color: var(--brown); }
+
+.login-field input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: white;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.login-field input::placeholder { color: #cbb89f; font-weight: 300; }
+
+.login-field input:focus {
+  border-color: var(--brown);
+  background: #fffbf7;
+  box-shadow: 0 0 0 3px rgba(139,94,60,0.09), 0 2px 8px rgba(139,94,60,0.07);
+}
+
+/* Forgot password */
+.forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: -6px 0 18px;
+}
+
+.forgot-row a {
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  color: var(--text-light);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.forgot-row a:hover {
+  color: var(--brown);
+  border-color: rgba(139,94,60,0.35);
+}
+
+/* ── PRIMARY BUTTON ── */
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--brown), var(--brown-dark));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(92,56,32,0.38);
+  margin-bottom: 0;
+}
+
+.primary-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.13), transparent);
+  transition: left 0.55s ease;
+}
+
+.primary-btn:hover::before { left: 100%; }
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(92,56,32,0.48);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 12px rgba(92,56,32,0.3);
+}
+
+/* Gold shimmer line */
+.primary-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,168,83,0.5), transparent);
+}
+
+/* ── DIVIDER ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.divider span {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  background: transparent;
+  padding: 0;
+}
+
+/* ── SOCIAL BUTTONS ── */
+.google-btn,
+.apple-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-family: 'Jost', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.google-btn {
+  background: white;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+}
+
+.google-btn:hover {
+  border-color: var(--brown-light);
+  background: #fffbf7;
+  box-shadow: 0 3px 12px rgba(139,94,60,0.1);
+  transform: translateY(-1px);
+}
+
+.apple-btn {
+  background: linear-gradient(135deg, #1a1a1a, #000);
+  border: 1.5px solid #333;
+  color: white;
+  margin-bottom: 0;
+}
+
+.apple-btn:hover {
+  background: linear-gradient(135deg, #2a2a2a, #111);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.google-btn img,
+.apple-btn img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/* ── SWITCH TEXT ── */
+.switch-text {
+  text-align: center;
+  margin-top: 22px;
+  font-family: 'Jost', sans-serif;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.switch-text a,
+.switch-text span a {
+  color: var(--brown);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(139,94,60,0.3);
+  transition: all 0.2s;
+}
+
+.switch-text a:hover,
+.switch-text span a:hover {
+  color: var(--brown-dark);
+  border-color: var(--brown-dark);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 460px) {
+  .login-header { padding: 30px 24px 34px; }
+  .login-body   { padding: 26px 22px 30px; }
+}

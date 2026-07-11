@@ -1,0 +1,222 @@
+.product-page {
+  background: #f6f3ef;
+}
+
+/* HERO */
+.product-page .shop-hero {
+  background: #e8dfd4;
+  padding: 60px 0;
+}
+
+.product-page .shop-hero h2 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.product-page .shop-hero p {
+  color: #555;
+}
+
+/* SIDEBAR */
+.product-page .sidebar {
+  background: #fff;
+  padding: 30px;
+  min-height: 100vh;
+  border-right: 1px solid #eee;
+}
+
+.product-page .filter-section {
+  margin-bottom: 30px;
+}
+
+.product-page .filter-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.product-page .filter-section li {
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.product-page .filter-section li:hover {
+  color: #b57449;
+}
+
+/* PRODUCT CARD */
+.product-page .product-card {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  transition: 0.3s;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.product-page .product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.08);
+}
+
+.product-page .product-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.product-page .price {
+  color: #b57449;
+  font-weight: 600;
+}
+
+.product-page .add-btn {
+  background: #b57449;
+  color: #fff;
+  border-radius: 30px;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.product-page .add-btn:hover {
+  background: #8f5837;
+}
+
+/* WISHLIST ICON */
+.product-page .wishlist-icon {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #d2b8a3;
+  background: white;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+  border: 1px solid rgb(145, 83, 83);
+  z-index: 2;
+}
+
+.product-page .wishlist-icon.active {
+  color: #6f4e37;
+}
+
+.product-page .wishlist-icon:hover {
+  transform: scale(1.1);
+}
+
+/* PAGINATION */
+.product-page .page-btn {
+  background: #ddd;
+  border: none;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 50%;
+}
+
+.product-page .page-btn.active {
+  background: #b57449;
+  color: #fff;
+}
+/* ── Add to product.css ─────────────────────────────────────── */
+
+/* Toast */
+.product-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 9999;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.product-toast-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.product-toast-error {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Out of stock badge */
+.out-of-stock-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #c62828;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+/* Discount badge */
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e65100;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+/* Price row */
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 8px;
+}
+
+.price {
+  color: #8b5e3c;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.original-price {
+  color: #aaa;
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+/* Low stock text */
+.low-stock-text {
+  color: #e65100;
+  font-size: 12px;
+  margin: 0 0 6px;
+}
+
+/* Added button state */
+.btn-added {
+  background: #2e7d32 !important;
+  color: white !important;
+  border-color: #2e7d32 !important;
+}

@@ -1,0 +1,309 @@
+.detail-wrapper {
+  background: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Image Section */
+.image-section {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.8s ease;
+}
+
+.detail-img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.image-section:hover .detail-img {
+  transform: scale(1.05);
+}
+
+/* Text Content */
+.detail-content {
+  animation: slideUp 0.8s ease;
+}
+
+.category {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #a67c52;
+  text-transform: uppercase;
+}
+
+.title {
+  font-weight: 700;
+  margin: 10px 0;
+  color: #2d2d2d;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  color: #a67c52;
+  margin: 15px 0;
+}
+
+.rating span {
+  font-size: 14px;
+  color: gray;
+}
+
+.desc {
+  color: #555;
+  line-height: 1.6;
+}
+.feature-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-4px);
+}
+
+.icon-circle {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #f3ede6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 8px;
+  transition: 0.3s ease;
+}
+
+.feature-item:hover .icon-circle {
+  background: #a67c52;
+  color: white;
+  box-shadow: 0 5px 15px rgba(166, 124, 82, 0.3);
+}
+
+/* Quantity */
+.qty-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.qty-section button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background: white;
+  transition: 0.3s;
+}
+
+.qty-section button:hover {
+  background: #a67c52;
+  color: white;
+}
+
+/* Buttons */
+.btn-group button {
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  margin-right: 15px;
+  transition: all 0.3s ease;
+}
+
+.cart-btn {
+  background: #2d2d2d;
+  color: white;
+}
+
+.cart-btn:hover {
+  background: #a67c52;
+}
+
+.buy-btn {
+  background: #a67c52;
+  color: white;
+}
+
+.buy-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(166, 124, 82, 0.3);
+}
+
+/* Extra Info */
+.extra-info h5 {
+  font-weight: 600;
+}
+
+.extra-info p {
+  color: #555;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.detail-img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.btn-brown {
+  background-color: #6f4e37;
+  color: white;
+  border: none;
+}
+
+.btn-brown:hover {
+  background-color: #5a3e2b;
+}
+
+.btn-outline-brown {
+  border: 1px solid #6f4e37;
+  color: #6f4e37;
+}
+
+.btn-outline-brown:hover {
+  background-color: #6f4e37;
+  color: white;
+}
+
+.text-brown {
+  color: #6f4e37;
+}
+
+/* Amazon Style Sticky */
+.sticky-image {
+  position: sticky;
+  top: 100px; /* navbar ke according adjust karo */
+}
+
+/* Right content spacing */
+.detail-content {
+  padding-left: 30px;
+}
+
+@media (max-width: 992px) {
+  .sticky-image {
+    position: relative;
+    top: 0;
+  }
+}
+.btn-bulk-active {
+  background: linear-gradient(135deg, #6f4e37, #8b5e3c);
+  color: white;
+
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-bulk-active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(111, 78, 55, 0.3);
+  color: white;
+}
+
+.btn-bulk-disabled {
+  background: #ddd;
+  color: #777;
+  border: none;
+  cursor: not-allowed;
+}
+
+/* Reviews Section Styling */
+.reviews-container {
+  border-top: 1px solid #eee;
+  padding-top: 40px;
+  margin-top: 50px;
+}
+
+.star-rating {
+  color: #ff9900; /* Amazon Yellow */
+  font-size: 1.2rem;
+}
+
+.rating-summary {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.progress {
+  height: 10px;
+  border-radius: 5px;
+}
+
+.review-card {
+  border-bottom: 1px solid #f1f1f1;
+  padding: 20px 0;
+}
+
+.reviewer-name {
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.review-date {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.verified-purchase {
+  color: #c45500;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+/* Star Color - Amazon/Meesho Style */
+.star-color {
+  color: #ffa41c; /* Golden Orange */
+  font-size: 1.1rem;
+}
+
+/* Custom Scrollbar for Reviews */
+.review-list::-webkit-scrollbar {
+  width: 5px;
+}
+.review-list::-webkit-scrollbar-thumb {
+  background: #a67c52;
+  border-radius: 10px;
+}
+
+/* Review Card styling */
+.review-list .card {
+  transition: background 0.3s;
+}
+.review-list .card:hover {
+  background-color: #fdfdfd;
+}
+
+/* Price color */
+.text-brown {
+  color: #6f4e37;
+  font-weight: 700;
+}

@@ -1,0 +1,212 @@
+.topbar {
+  background: linear-gradient(135deg, #6f4e37, #8b5e3c);
+  color: white;
+  padding: 10px 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* Navbar */
+.custom-navbar {
+  background: white;
+  padding: 18px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.crochet-logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #6f4e37 !important;
+}
+
+.nav-link {
+  color: #444 !important;
+  font-weight: 600;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-link::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #6f4e37;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  transition: 0.3s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.admin-link {
+  color: #e63946 !important;
+  font-weight: 700;
+}
+
+/* Login Button */
+.login-btn {
+  background: #6f4e37;
+  color: white;
+  border-radius: 10px;
+  padding: 8px 20px;
+  font-weight: 600;
+  border: none;
+}
+
+/* Icons */
+.wishlist-icon,
+.profile-icon {
+  font-size: 22px;
+  color: #6f4e37;
+  transition: 0.3s;
+}
+
+.wishlist-icon:hover,
+.profile-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Wishlist Count */
+.wishlist-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: #e63946;
+  color: white;
+  font-size: 10px;
+  padding: 4px 7px;
+  border-radius: 50%;
+}
+
+/* Logout */
+.logout-btn {
+  background: none;
+  border: none;
+  color: #6f4e37;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  color: #e63946;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .ms-auto {
+    margin-top: 15px;
+    justify-content: center !important;
+  }
+}
+.topbar {
+  background: linear-gradient(135deg, #6f4e37, #8b5e3c);
+  color: white;
+  padding: 10px 0;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* Navbar */
+.custom-navbar {
+  background: white;
+  padding: 18px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.crochet-logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #6f4e37 !important;
+}
+
+/* Nav Links */
+.nav-link {
+  color: #444 !important;
+  font-weight: 600;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-link::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #6f4e37;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  transition: 0.3s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Special Bulk Highlight */
+.bulk-link {
+  color: #e63946 !important;
+  font-weight: 700;
+}
+
+/* Icons */
+.icon-link {
+  font-size: 22px;
+  color: #6f4e37;
+  transition: 0.3s;
+}
+
+.icon-link:hover {
+  transform: scale(1.2);
+}
+
+/* Count Badge */
+.count-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: #e63946;
+  color: white;
+  font-size: 10px;
+  padding: 4px 7px;
+  border-radius: 50%;
+}
+
+/* Login */
+.login-btn {
+  background: #6f4e37;
+  color: white;
+  border-radius: 10px;
+  padding: 8px 20px;
+  font-weight: 600;
+  border: none;
+}
+
+/* Logout */
+.logout-btn {
+  background: none;
+  border: none;
+  color: #6f4e37;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  color: #e63946;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .ms-auto {
+    margin-top: 15px;
+    justify-content: center !important;
+  }
+}

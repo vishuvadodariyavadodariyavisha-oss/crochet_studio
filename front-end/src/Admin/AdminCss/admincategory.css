@@ -1,0 +1,130 @@
+.admin-category-page {
+  background-color: #fdf8f3;
+  min-height: 100vh;
+   /* margin-top: 20px; */
+   /* border:3px solid black; */
+}
+
+.category-container {
+   background: white;
+  padding: 25px;
+  border-radius: 15px;
+ 
+}
+
+.page-title {
+  color: #6f4e37;
+  font-weight: 600;
+}
+
+.add-btn {
+  background-color: #6f4e37;
+  color: white;
+  border: none;
+}
+
+.add-btn:hover {
+  background-color: #5a3e2d;
+  color:white;  
+}
+
+.category-table thead {
+  background-color: #e8ddd5;
+}
+
+.cat-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.ca-edit-btn {
+  background-color: #8b5e3c;
+  color: white;
+  border: 1px solid #8b5e3c;
+}
+
+.ca-edit-btn:hover {
+  background-color: #6f4e37;
+   color: white;
+  
+}
+
+.save-btn {
+  background-color: #6f4e37;
+  color: white;
+  border: none;
+}
+
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.modal-content-box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 400px;
+}
+
+/* --- Only Column Adjustments --- */
+
+.category-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* 1. Universal spacing and vertical centering */
+.category-table th, 
+.category-table td {
+    padding: 15px; 
+    vertical-align: middle; 
+    text-align: left;
+}
+
+/* 2. Image Column - Keep it compact */
+.category-table th:nth-child(1), 
+.category-table td:nth-child(1) {
+    width: 80px;
+}
+
+/* 3. Name Column - Give it a set width */
+.category-table th:nth-child(2), 
+.category-table td:nth-child(2) {
+    width: 150px;
+}
+
+/* 4. Description Column - Use 'flex-like' behavior to take remaining space */
+.category-table th:nth-child(3), 
+.category-table td:nth-child(3) {
+    max-width: 400px; /* Prevents the row from getting too wide */
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+/* 5. Status & Actions - Fixed width so buttons don't wrap */
+.category-table th:nth-child(4), 
+.category-table td:nth-child(4),
+.category-table th:nth-child(5), 
+.category-table td:nth-child(5) {
+    width: 120px;
+    text-align: center;
+}
+
+/* Space out the Edit/Delete buttons */
+.category-table td:last-child {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    border-bottom: none; /* Fix for flex alignment in table cells */
+}

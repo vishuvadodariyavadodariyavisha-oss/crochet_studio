@@ -1,0 +1,43 @@
+.admin-review-page {
+  background-color: #fdf8f3;
+  min-height: 100vh;
+}
+
+.review-container {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.page-title {
+  color: #6f4e37;
+  font-weight: 600;
+}
+
+.search-bar {
+  border-radius: 8px;
+  border: 1px solid #d2c2b5;
+}
+
+.review-table thead {
+  background-color: #e8ddd5;
+}
+
+.review-table th {
+  color: #6f4e37;
+}
+
+.review-text {
+  max-width: 250px;
+  
+}
+
+.btn-outline-danger {
+   background-color: #e03532;
+  color: white;
+}
+
+.btn-outline-danger:hover {
+     background-color: #9c1a18;
+
+}
