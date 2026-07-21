@@ -87,9 +87,10 @@ export default function Cart() {
   },[userId,userToken]);
 
   useEffect(() => {
-    if (userId)
-       fetchCart();
-  }, [fetchCart]);
+    if (!userId) return;
+
+    fetchCart();
+  }, [userId, fetchCart]);
 
   // ================= UPDATE QUANTITY =================
   const updateQuantity = async (productId, variantId, type, currentQty, stock) => {
