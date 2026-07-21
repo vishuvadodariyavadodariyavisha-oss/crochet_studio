@@ -458,7 +458,7 @@ export default function PaymentPage() {
   const totalAmount    = order?.totalAmount    ?? stateAmount ?? 0;
   const paidAmount     = order?.paidAmount     ?? 0;
   const subtotal       = order?.subtotal       ?? stateSubtotal ?? totalAmount;
-  const discount,Amount = order?.discountAmount ?? stateDiscountAmt ?? 0;
+  const discountAmount = order?.discountAmount ?? stateDiscountAmt ?? 0;
   const deliveryCharge = order?.deliveryCharge ?? stateDelivery ?? 0;
   const customerNote   = order?.customerNote   ?? stateCustomerNote ?? "";
   const couponCode     = order?.couponCode     ?? stateCouponCode ?? "";
