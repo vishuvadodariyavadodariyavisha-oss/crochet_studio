@@ -343,17 +343,6 @@ export default function PaymentPage() {
     setTimeout(() => setToast(null), 5000);
   };
 
-  useEffect(() => {
-    if (!userId) { navigate("/login"); return; }
-    if (!orderId) { setOrderError("Order ID is missing."); setLoadingOrder(false); return; }
-    if (!isValidObjectId(orderId)) {
-      setOrderError(`Invalid Order ID: "${orderId}" (${orderId.length} chars, expected 24).`);
-      setLoadingOrder(false);
-      return;
-    }
-    fetchOrder();
-  }, [fetchOrder, navigate, orderId, userId]);
-
   const fetchOrder =useCallback( async () => {
     setLoadingOrder(true);
     setOrderError(null);
@@ -454,6 +443,17 @@ export default function PaymentPage() {
   stateDelivery,
   stateCustomerNote,
   stateCouponCode]);
+
+  useEffect(() => {
+    if (!userId) { navigate("/login"); return; }
+    if (!orderId) { setOrderError("Order ID is missing."); setLoadingOrder(false); return; }
+    if (!isValidObjectId(orderId)) {
+      setOrderError(`Invalid Order ID: "${orderId}" (${orderId.length} chars, expected 24).`);
+      setLoadingOrder(false);
+      return;
+    }
+    fetchOrder();
+  }, [fetchOrder, navigate, orderId, userId]);
 
   const totalAmount    = order?.totalAmount    ?? stateAmount ?? 0;
   const paidAmount     = order?.paidAmount     ?? 0;
