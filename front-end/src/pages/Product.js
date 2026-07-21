@@ -35,40 +35,25 @@ export default function Product() {
   //   }
   // }, []);
 
-useEffect(() => {
-  const token = localStorage.getItem("userToken");
-
-  if (!token) {
-    setUserToken(null);
-    setUserId(null);
-    return;
-  }
-
-  setUserToken(token);
-
-  try {
-    const decoded = jwtDecode(token);
-    setUserId(decoded.id ?? decoded._id ?? decoded.userId);
-  } catch (err) {
-    console.log("Token Decode Error:", err);
-    setUserId(null);
-  }
-}, []);
-
   useEffect(() => {
-  if (!userToken) {
-    setUserId(null);
-    return;
-  }
+    const token = localStorage.getItem("userToken");
 
-  try {
-    const decoded = jwtDecode(userToken);
-    setUserId(decoded.id ?? decoded._id ?? decoded.userId);
-  } catch (err) {
-    console.log(err);
-  }
-}, [userToken]);
+    if (!token) {
+      setUserToken(null);
+      setUserId(null);
+      return;
+    }
 
+    setUserToken(token);
+
+    try {
+      const decoded = jwtDecode(token);
+      setUserId(decoded.id ?? decoded._id ?? decoded.userId);
+    } catch (err) {
+      console.log("Token Decode Error:", err);
+      setUserId(null);
+    }
+  }, []);
 
   // ── Fetch Categories ─────────────────────────────────────────────
   useEffect(() => {
