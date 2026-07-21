@@ -63,15 +63,13 @@ const SAMPLE_PRODUCT = {
 };
 
 // ─── Helper: Get logged-in user + token from localStorage ────────────────────
-const getLoggedInUser = () => {
-  try {
-    return JSON.parse(localStorage.getItem("user")) ?? null;
-  } catch {
-    return null;
-  }
-};
-
-
+// const getLoggedInUser = () => {
+//   try {
+//     return JSON.parse(localStorage.getItem("user")) ?? null;
+//   } catch {
+//     return null;
+//   }
+// };
 
 export default function CustomizeOrder() {
   const navigate = useNavigate();
