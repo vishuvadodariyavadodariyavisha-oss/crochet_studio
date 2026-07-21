@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useContext} from "react";
 import "../styless/product.css";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
@@ -11,7 +11,7 @@ export default function Product() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [wishlist,         setWishlist]         = useState([]);
   const [userId,           setUserId]           = useState(null);
-  const [userToken,        setUserToken]        = useState(null);
+  // const [userToken,        setUserToken]        = useState(null);
   const [cartAdded,        setCartAdded]        = useState({}); // productId → true/false
   const [toastMsg,         setToastMsg]         = useState(null);
 
@@ -22,18 +22,32 @@ export default function Product() {
   };
 
   // ── Get userId from token ────────────────────────────────────────
-  useEffect(() => {
-    const token = localStorage.getItem("userToken");
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        setUserId(decoded.id ?? decoded._id ?? decoded.userId);
-        setUserToken(token);
-      } catch (err) {
-        console.log("Token Decode Error:", err);
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("userToken");
+  //   if (token) {
+  //     try {
+  //       const decoded = jwtDecode(token);
+  //       setUserId(decoded.id ?? decoded._id ?? decoded.userId);
+  //       // setUserToken(token);
+  //     } catch (err) {
+  //       console.log("Token Decode Error:", err);
+  //     }
+  //   }
+  // }, []);
+useEffect(() => {
+  if (!userToken) {
+    setUserId(null);
+    return;
+  }
+
+  try {
+    const decoded = jwtDecode(userToken);
+    setUserId(decoded.id ?? decoded._id ?? decoded.userId);
+  } catch (err) {
+    console.log("Token Decode Error:", err);
+    setUserId(null);
+  }
+}, [userToken]);
 
   // ── Fetch Categories ─────────────────────────────────────────────
   useEffect(() => {
