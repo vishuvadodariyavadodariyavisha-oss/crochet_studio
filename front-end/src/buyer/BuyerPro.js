@@ -79,8 +79,9 @@ const fetchProfile = useCallback(async () => {
 
 useEffect(() => {
   if (!userToken) return;
+
   fetchProfile();
-}, [fetchProfile]);
+}, [fetchProfile, userToken]);
 
   // ── Image Change ───────────────────────────────────────────────
   const handleImageChange = (e) => {
