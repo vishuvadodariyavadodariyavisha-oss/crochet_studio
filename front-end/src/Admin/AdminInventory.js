@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext ,useCallback} from "react";
 import { AuthContext } from "../context/authContext";
 import "./AdminCss/adminInventoryManagement.css";
 
@@ -7,7 +7,8 @@ const BASE_URL = "http://localhost:5000/";
 const safeJson = async (res) => {
   const ct = res.headers.get("content-type") || "";
   if (ct.includes("application/json")) return res.json();
-  const text = await res.text();
+
+  await res.text();
   throw new Error(`Server error (${res.status})`);
 };
 
@@ -26,7 +27,7 @@ export default function InventoryManagement() {
   // ──────────────────────────────────────────────────────
   // Fetch inventory stats (totalAdded, ordersUsed, remaining)
   // ──────────────────────────────────────────────────────
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -41,9 +42,9 @@ export default function InventoryManagement() {
     } finally {
       setLoading(false);
     }
-  };
+  },[userToken]);
 
-  useEffect(() => { fetchProducts(); }, []);
+  useEffect(() => { fetchProducts(); }, [fetchProducts]);
 
   // ──────────────────────────────────────────────────────
   // Update stock quantity for a variant/product
