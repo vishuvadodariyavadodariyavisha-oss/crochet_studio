@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext,useCallback } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/authContext";
 import "./AdminCss/usermang.css";
@@ -16,7 +16,7 @@ export default function UserManagement() {
   const BASE_URL = "http://localhost:5000/";
 
   // Fetch users
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     if (!adminToken) return;
 
     try {
@@ -28,7 +28,7 @@ export default function UserManagement() {
       console.error("Error fetching users:", error);
       setUsers([]);
     }
-  };
+  },[adminToken]);
 
   useEffect(() => {
     fetchUsers();
