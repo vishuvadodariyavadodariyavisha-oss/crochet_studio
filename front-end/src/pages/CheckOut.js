@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext ,useCallback} from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { jwtDecode } from "jwt-decode";
@@ -46,18 +46,7 @@ export default function CheckOut() {
 
   const DELIVERY_CHARGE = 0; // change to e.g. 50 if you want to charge delivery
 
-  // ── Fetch Cart or use Buy Now ─────────────────────────────────────
-  useEffect(() => {
-    if (!userId) { navigate("/login"); return; }
-    if (buyNowItem) {
-      setCart([buyNowItem]);
-      setLoading(false);
-    } else {
-      fetchCart();
-    }
-  }, [userId]);
-
-  const fetchCart = async () => {
+  const fetchCart =useCallback( async () => {
     try {
       setLoading(true);
       const res  = await fetch(`${BASE_URL}api/cart/getUserCart/${userId}`, {
@@ -82,7 +71,18 @@ export default function CheckOut() {
     } finally {
       setLoading(false);
     }
-  };
+  },[userId,userToken]);
+
+   // ── Fetch Cart or use Buy Now ─────────────────────────────────────
+  useEffect(() => {
+    if (!userId) { navigate("/login"); return; }
+    if (buyNowItem) {
+      setCart([buyNowItem]);
+      setLoading(false);
+    } else {
+      fetchCart();
+    }
+  }, [userId,buyNowItem,fetchCart,navigate]);
 
   // ── Totals ────────────────────────────────────────────────────────
   const subtotal       = cart.reduce((acc, i) => acc + i.price * i.quantity, 0);
