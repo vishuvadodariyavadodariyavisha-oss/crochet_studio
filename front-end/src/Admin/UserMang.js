@@ -32,7 +32,7 @@ export default function UserManagement() {
 
   useEffect(() => {
     fetchUsers();
-  }, [adminToken]);
+  }, [fetchUsers]);
 
   // UPDATE USER STATUS FUNCTION
   const handleStatusChange = async (id, currentStatus) => {
