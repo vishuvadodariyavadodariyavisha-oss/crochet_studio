@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext ,useCallback} from "react";
 import "../styless/cart.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
@@ -25,7 +25,7 @@ export default function Cart() {
   }, [userToken]);
 
   // ================= FETCH CART =================
-  const fetchCart = async () => {
+  const fetchCart =useCallback( async () => {
     if (!userId) return;
     try {
       const res  = await fetch(`http://localhost:5000/api/cart/getUserCart/${userId}`, {
@@ -84,11 +84,12 @@ export default function Cart() {
       console.log("Fetch Cart Error:", err);
       setError("Failed to load cart. Please try again.");
     }
-  };
+  },[userId,userToken]);
 
   useEffect(() => {
-    if (userId) fetchCart();
-  }, [userId]);
+    if (userId)
+       fetchCart();
+  }, [fetchCart]);
 
   // ================= UPDATE QUANTITY =================
   const updateQuantity = async (productId, variantId, type, currentQty, stock) => {
