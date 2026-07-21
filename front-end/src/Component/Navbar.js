@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState ,useCallback} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import "./navbar.css";
@@ -20,36 +20,44 @@ export default function Navbar() {
   const [wishlistCount, setWishlistCount] = useState(0);
   const [cartCount,     setCartCount]     = useState(0);
 
-  const fetchCounts = async () => {
-    if (!isUser || !userToken) {
-      setWishlistCount(0);
-      setCartCount(0);
-      return;
-    }
+ const fetchCounts = useCallback(async () => {
+  if (!isUser || !userToken) {
+    setWishlistCount(0);
+    setCartCount(0);
+    return;
+  }
 
-    const userId = getUserIdFromToken(userToken);
-    if (!userId) return;
+  const userId = getUserIdFromToken(userToken);
+  if (!userId) return;
 
-    const headers = { Authorization: `Bearer ${userToken}` };
+  const headers = { Authorization: `Bearer ${userToken}` };
 
-    // ── Wishlist count ──────────────────────────────────────────
-    try {
-      const res  = await fetch(`${BASE_URL}/wishlist/getUserWishlist/${userId}`, { headers });
-      const data = await res.json();
-      setWishlistCount(data.data?.length ?? 0);
-    } catch { setWishlistCount(0); }
+  try {
+    const res = await fetch(
+      `${BASE_URL}/wishlist/getUserWishlist/${userId}`,
+      { headers }
+    );
+    const data = await res.json();
+    setWishlistCount(data.data?.length ?? 0);
+  } catch {
+    setWishlistCount(0);
+  }
 
-    // ── Cart count — ✅ correct URL: getUserCart ────────────────
-    try {
-      const res  = await fetch(`${BASE_URL}/cart/getUserCart/${userId}`, { headers });
-      const data = await res.json();
-      // Total quantity of all items
-      const count = (data.products ?? []).reduce(
-        (sum, item) => sum + (item.quantity || 1), 0
-      );
-      setCartCount(count);
-    } catch { setCartCount(0); }
-  };
+  try {
+    const res = await fetch(
+      `${BASE_URL}/cart/getUserCart/${userId}`,
+      { headers }
+    );
+    const data = await res.json();
+    const count = (data.products ?? []).reduce(
+      (sum, item) => sum + (item.quantity || 1),
+      0
+    );
+    setCartCount(count);
+  } catch {
+    setCartCount(0);
+  }
+}, [isUser, userToken]);
 
   useEffect(() => {
     fetchCounts();
