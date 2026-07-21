@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useContext} from "react";
+import React, { useState, useEffect} from "react";
 import "../styless/product.css";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
@@ -11,7 +11,8 @@ export default function Product() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [wishlist,         setWishlist]         = useState([]);
   const [userId,           setUserId]           = useState(null);
-   const [userToken,        setUserToken]        = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [userToken, setUserToken] = useState(null);
   const [cartAdded,        setCartAdded]        = useState({}); // productId → true/false
   const [toastMsg,         setToastMsg]         = useState(null);
 
