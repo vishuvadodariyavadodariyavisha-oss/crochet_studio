@@ -1,10 +1,10 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useCallback} from "react";
 import { useNavigate, useParams, useSearchParams, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { jwtDecode } from "jwt-decode";
 import "../styless/payment.css";
 
-const BASE_URL        = "http://localhost:5000/";
+// const BASE_URL        = "http://localhost:5000/";
 const BASE_CUSTOM_URL = "http://localhost:5000/api/customization";
 const BASE_BULK_URL   = "http://localhost:5000/api/bulkorders";
 const PAYMENT_API     = "http://localhost:5000/api/payment";
@@ -352,9 +352,9 @@ export default function PaymentPage() {
       return;
     }
     fetchOrder();
-  }, [orderId]);
+  }, [fetchOrder, navigate, orderId, userId]);
 
-  const fetchOrder = async () => {
+  const fetchOrder =useCallback( async () => {
     setLoadingOrder(true);
     setOrderError(null);
     try {
@@ -444,12 +444,21 @@ export default function PaymentPage() {
     } finally {
       setLoadingOrder(false);
     }
-  };
+  }, [
+  isBulk,
+  orderId,
+  userToken,
+  stateAmount,
+  stateSubtotal,
+  stateDiscountAmt,
+  stateDelivery,
+  stateCustomerNote,
+  stateCouponCode]);
 
   const totalAmount    = order?.totalAmount    ?? stateAmount ?? 0;
   const paidAmount     = order?.paidAmount     ?? 0;
   const subtotal       = order?.subtotal       ?? stateSubtotal ?? totalAmount;
-  const discountAmount = order?.discountAmount ?? stateDiscountAmt ?? 0;
+  const discount,Amount = order?.discountAmount ?? stateDiscountAmt ?? 0;
   const deliveryCharge = order?.deliveryCharge ?? stateDelivery ?? 0;
   const customerNote   = order?.customerNote   ?? stateCustomerNote ?? "";
   const couponCode     = order?.couponCode     ?? stateCouponCode ?? "";
