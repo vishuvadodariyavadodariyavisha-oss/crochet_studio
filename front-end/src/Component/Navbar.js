@@ -57,7 +57,7 @@ export default function Navbar() {
   } catch {
     setCartCount(0);
   }
-}, [isUser, userToken]);
+}, [fetchCounts]);
 
   useEffect(() => {
     fetchCounts();
