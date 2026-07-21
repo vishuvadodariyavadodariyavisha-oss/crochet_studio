@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect,useCallback } from "react";
 import "../styless/buyerpro.css";
 import { useAuth } from "../context/authContext";
 
@@ -34,9 +34,9 @@ export default function BuyerProfile() {
   useEffect(() => {
     if (!userToken) return;
     fetchProfile();
-  }, [userToken]);
+  }, [fetchProfile]);
 
-  const fetchProfile = async () => {
+  const fetchProfile = useCallback(async () => {
     try {
       setLoading(true);
       const res  = await fetch(`${BASE_URL}/profile`, {
@@ -67,7 +67,7 @@ export default function BuyerProfile() {
     } finally {
       setLoading(false);
     }
-  };
+  },[userToken]);
 
   // ── Image Change ───────────────────────────────────────────────
   const handleImageChange = (e) => {
