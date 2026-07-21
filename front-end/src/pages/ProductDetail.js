@@ -9,15 +9,22 @@ const BASE_URL = "http://localhost:5000/";
 // ── Safe JSON parse — prevents "<!DOCTYPE" crash when backend returns HTML ────
 const safeJson = async (res) => {
   const contentType = res.headers.get("content-type") || "";
+
   if (contentType.includes("application/json")) {
     return res.json();
   }
-  const text = await res.text();
+
+  await res.text();
+
   const statusMessages = {
     404: "API route not found (404). Please check server route registration.",
     500: "Internal server error (500). Check backend logs.",
   };
-  throw new Error(statusMessages[res.status] || `Server error (${res.status}): Route may not be registered.`);
+
+  throw new Error(
+    statusMessages[res.status] ||
+    `Server error (${res.status}): Route may not be registered.`
+  );
 };
 
 const toImgUrl = (path) => {
