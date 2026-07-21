@@ -31,43 +31,56 @@ export default function BuyerProfile() {
   const defaultImg   = "https://i.pravatar.cc/150?img=47";
 
   // ── Fetch Profile ──────────────────────────────────────────────
-  useEffect(() => {
-    if (!userToken) return;
-    fetchProfile();
-  }, [fetchProfile]);
+  // ✅ Correct order
+const fetchProfile = useCallback(async () => {
+  try {
+    setLoading(true);
+    setError(null);
 
-  const fetchProfile = useCallback(async () => {
-    try {
-      setLoading(true);
-      const res  = await fetch(`${BASE_URL}/profile`, {
-        headers: { Authorization: `Bearer ${userToken}` },
-      });
-      const data = await res.json();
-      if (!data.success) throw new Error(data.message);
+    const res = await fetch(`${BASE_URL}/profile`, {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    });
 
-      const d = data.data;
-      setBuyer({
-        name:        d.name          || "",
-        email:       d.email         || "",
-        phone:       d.phone         || "",
-        address:     d.address       || "",
-        joined:      d.joinedDate
-          ? new Date(d.joinedDate).toLocaleDateString("en-IN", {
-              day: "numeric", month: "long", year: "numeric",
-            })
-          : "",
-        totalOrders: d.totalOrders   || 0,
-        totalSpent:  d.totalSpent    || 0,
-        status:      d.status === "premium" ? "Premium Member" : "Member",
-        imgSrc:      d.profileImage  || null,
-      });
-      setRecentOrders((d.orders || []).slice(0, 3));
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+    const data = await res.json();
+
+    if (!data.success) {
+      throw new Error(data.message);
     }
-  },[userToken]);
+
+    const d = data.data;
+
+    setBuyer({
+      name: d.name || "",
+      email: d.email || "",
+      phone: d.phone || "",
+      address: d.address || "",
+      joined: d.joinedDate
+        ? new Date(d.joinedDate).toLocaleDateString("en-IN", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })
+        : "",
+      totalOrders: d.totalOrders || 0,
+      totalSpent: d.totalSpent || 0,
+      status: d.status === "premium" ? "Premium Member" : "Member",
+      imgSrc: d.profileImage || null,
+    });
+
+    setRecentOrders((d.orders || []).slice(0, 3));
+  } catch (err) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+}, [userToken]);
+
+useEffect(() => {
+  if (!userToken) return;
+  fetchProfile();
+}, [fetchProfile]);
 
   // ── Image Change ───────────────────────────────────────────────
   const handleImageChange = (e) => {
