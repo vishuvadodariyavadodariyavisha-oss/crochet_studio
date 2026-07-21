@@ -11,7 +11,7 @@ export default function Product() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [wishlist,         setWishlist]         = useState([]);
   const [userId,           setUserId]           = useState(null);
-  // const [userToken,        setUserToken]        = useState(null);
+   const [userToken,        setUserToken]        = useState(null);
   const [cartAdded,        setCartAdded]        = useState({}); // productId → true/false
   const [toastMsg,         setToastMsg]         = useState(null);
 
@@ -34,7 +34,28 @@ export default function Product() {
   //     }
   //   }
   // }, []);
+
 useEffect(() => {
+  const token = localStorage.getItem("userToken");
+
+  if (!token) {
+    setUserToken(null);
+    setUserId(null);
+    return;
+  }
+
+  setUserToken(token);
+
+  try {
+    const decoded = jwtDecode(token);
+    setUserId(decoded.id ?? decoded._id ?? decoded.userId);
+  } catch (err) {
+    console.log("Token Decode Error:", err);
+    setUserId(null);
+  }
+}, []);
+
+  useEffect(() => {
   if (!userToken) {
     setUserId(null);
     return;
@@ -44,10 +65,10 @@ useEffect(() => {
     const decoded = jwtDecode(userToken);
     setUserId(decoded.id ?? decoded._id ?? decoded.userId);
   } catch (err) {
-    console.log("Token Decode Error:", err);
-    setUserId(null);
+    console.log(err);
   }
 }, [userToken]);
+
 
   // ── Fetch Categories ─────────────────────────────────────────────
   useEffect(() => {
